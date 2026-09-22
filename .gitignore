@@ -1,4 +1,5 @@
 # Virtual environment
+venv/
 .venv/
 
 # Environment variables / secrets
