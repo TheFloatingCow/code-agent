@@ -1,0 +1,23 @@
+# Virtual environment
+venv/
+
+# Environment variables / secrets
+.env
+*.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE/editor clutter
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs / local test output (if you add logging later)
+*.log
+review_output/
