@@ -50,10 +50,12 @@ def review_diff(diff_text: str, repo: str) -> ReviewResult:
         messages.append({"role": "user", "content": results})
     else:
         raise RuntimeError("Hit step limit without a final answer")
-    raw_text = next(b.text for b in response.content if b.type == "text")
+    raw_text = next((b.text for b in response.content if b.type == "text"), None)
+    if raw_text is None:
+        raise RuntimeError("Model returned no text block")
     # strip markdown fences if the model adds them
     cleaned = raw_text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-    data = json.loads(cleaned)
+    data = json.loads(cleaned[cleaned.index("{"): cleaned.rindex("}") + 1])
     return ReviewResult(**data)
 
 @click.command()

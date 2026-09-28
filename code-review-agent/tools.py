@@ -28,7 +28,7 @@ TOOLS = [
 def read_file(repo: str, path: str) -> str:
     root = Path(repo).resolve()
     target = (root / path).resolve()
-    if root not in target.parents:
+    if not target.is_relative_to(root):
         return "Error: path outside repo"
     if not target.is_file():
         return f"Error: {path} not found"
