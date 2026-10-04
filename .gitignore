@@ -24,3 +24,5 @@ Thumbs.db
 # Logs / local test output (if you add logging later)
 *.log
 review_output/
+
+*.egg-info/

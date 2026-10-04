@@ -1,9 +1,9 @@
 import click
 import json
 from anthropic import Anthropic
-from schema import ReviewResult
-from diff_utils import get_diff
-from tools import TOOLS, run_tool
+from code_review_agent.schema import ReviewResult
+from code_review_agent.diff_utils import get_diff
+from code_review_agent.tools import TOOLS, run_tool
 
 client = Anthropic()
 MAX_STEPS = 10
@@ -115,7 +115,7 @@ def review_diff(diff_text: str, repo: str) -> ReviewResult:
     return ReviewResult(**data)
 
 @click.command()
-@click.option("--repo", default=".", help="Path to git repo")
+@click.argument("repo", default=".")
 @click.option("--range", "range_spec", default=None, help="e.g. main..HEAD")
 def cli(repo, range_spec):
     diff_text = get_diff(repo, range_spec)
