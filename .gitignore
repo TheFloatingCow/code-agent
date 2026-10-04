@@ -18,6 +18,7 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+%SystemDrive%/
 
 # Logs / local test output (if you add logging later)
 *.log
